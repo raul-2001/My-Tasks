@@ -1,0 +1,51 @@
+{% extends 'tasks/base.html' %}
+{% block content %}
+<nav class="container">
+    <h1>MY TASKS</h1>
+</nav>
+<div class="">
+    <div class="row table-control form-control-lg form_sytle border border-5">
+        <form method="post" action="/">
+            {% csrf_token %}
+            <div class="">
+                {{ form.title }}
+            </div>
+            <input class="btn btn-success" type="submit">
+        </form>
+    </div>
+</div>
+<div class="">
+    <div class="">
+        <div class="" style="width: 18rem;">
+            <div class="">
+<table class="table table-bordered border border-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">tasks</th>
+      <th scope="col">update</th>
+      <th scope="col">delete</th>
+    </tr>
+  </thead>
+  {% for task in list %}
+  <tbody>
+    <tr class="text-primary">
+      <th class="text-primary" scope="row">{{task.id}}</th>
+                {% if task.complet == True %}
+      <td><strike class="tasks">{{ task }}</strike></td>
+        {% else %}
+      <td><span>{{ task }}</span></td>
+        {% endif %}
+      <td><a href="{% url 'my_update_task' task.id%}">Update</a></td>
+      <td><a href="{% url 'delete' task.id %}">Delete</a></td>
+
+    </tr>
+  </tbody>
+    {% endfor %}
+</table>
+
+            </div>
+        </div>
+     </div>
+</div>
+{% endblock %}

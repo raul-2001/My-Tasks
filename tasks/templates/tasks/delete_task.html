@@ -1,0 +1,12 @@
+{% extends 'tasks/base.html' %}
+{% block content %}
+<h1>Sən əminsən ki bu tapşırığı silmək istəyisən:  id :"{{item.id}} and {{item.title}}"</h1>
+
+<a href="{% url 'list' %}">Cancel</a>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" name="Confirm">
+</form>
+{% endblock %}
